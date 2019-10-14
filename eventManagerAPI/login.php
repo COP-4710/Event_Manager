@@ -29,7 +29,7 @@ else
     //$arr = array('userid' => "$userid", 'password' =>  "$pword", 'username' => "$uname");
     //echo json_encode($row);
 
-    rsendResultInfoAsJson(json_encode($row));
+    sendResultInfoAsJson(json_encode($row));
   }
   
   else
