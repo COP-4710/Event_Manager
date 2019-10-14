@@ -33,7 +33,7 @@ else
   else
   {
     $object->err = "No account with the uname = " . $username .  "and password =  " . $password;    
-    returnWithError('Error there were no contacts for the user uname = ' . $username . ' found.');
+    returnWithError($object->err);
   }
 
 
