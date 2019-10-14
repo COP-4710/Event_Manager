@@ -8,7 +8,7 @@ $conn = new mysqli("localhost", "debian-sys-maint", "d197cf7871616e0bcada971f428
 if ($conn->connect_error)
 {
     $object->err = "Could not connect to database";
-		returnWithError($object->err);
+    returnWithError($object->err);
 }
 
 else
@@ -18,15 +18,21 @@ else
   $username = $inData["username"];
   $password = $inData["password"];
   $sql = "SELECT id, first_name, last_name FROM user_list where email = '$email' and pass = '$password'";
-	$result = $conn->query($sql);
+  $result = $conn->query($sql);
   if ($result->num_rows > 0)
   {
     $row = $result->fetch_assoc();
-	$uname = $row["username"];
-	$pword = $row["password"];
-	$userid = $row["userid"];
+    $uname = $row["username"];
+    $pword = $row["password"];
+    $userid = $row["userid"];
 
-	returnWithInfo(json_encode($row));
+    returnWithInfo(json_encode($row));
+  }
+  
+  else
+  {
+    $object->err = "No account with the uname = " . $username .  "and password =  " . $password;    
+    returnWithError('Error there were no contacts for the user uname = ' . $username . ' found.');
   }
 
 
@@ -34,18 +40,18 @@ else
 
 function returnWithError( $err )
 {
-		sendResultInfoAsJson(json_encode($err));
+    sendResultInfoAsJson(json_encode($err));
 }
 
 function getRequestInfo()
 {
-		return json_decode(file_get_contents('php://input'), true);
+    return json_decode(file_get_contents('php://input'), true);
 }
 
 function sendResultInfoAsJson( $obj )
 {
-  	header('Content-type: application/json');
-  	echo $obj;
+    header('Content-type: application/json');
+    echo $obj;
 }
 
- ?>
+?>
