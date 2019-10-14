@@ -17,7 +17,7 @@ else
   $email = $inData["email"];
   $username = $inData["username"];
   $password = $inData["password"];
-  $sql = "SELECT id, first_name, last_name FROM user_list where email = '$email' and pass = '$password'";
+  $sql = "SELECT id, first_name, last_name FROM user_list where username = '$username' and password = '$password'";
   $result = $conn->query($sql);
   if ($result->num_rows > 0)
   {
