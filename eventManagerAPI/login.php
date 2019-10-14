@@ -16,6 +16,7 @@ else
   echo "Hooray";
   $email = $inData["email"];
   $username = $inData["username"];
+  echo $username;
   $password = $inData["password"];
   $sql = "SELECT id, first_name, last_name FROM user_list where username = '$username' and password = '$password'";
   $result = $conn->query($sql);
@@ -32,7 +33,7 @@ else
   
   else
   {
-    $object->err = "No account with the uname = " . $username .  "and password =  " . $password;    
+    $object->err = "No account with the uname = " . $username .  " and password =  " . $password;    
     returnWithError($object->err);
   }
 
