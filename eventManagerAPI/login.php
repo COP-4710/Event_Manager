@@ -13,12 +13,12 @@ if ($conn->connect_error)
 
 else
 {
-  echo "Hooray";
+  //echo "Hooray";
   $email = $inData["email"];
   $username = $inData["username"];
-  echo $username;
+  //echo $username;
   $password = $inData["password"];
-  $sql = "SELECT id, first_name, last_name FROM user_list where username = '$username' and password = '$password'";
+  $sql = "SELECT id, first_name, last_name FROM user_list WHERE username = '$username' and password = '$password'";
   $result = $conn->query($sql);
   if ($result->num_rows > 0)
   {
