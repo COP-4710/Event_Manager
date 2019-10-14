@@ -13,25 +13,31 @@ if ($conn->connect_error)
 
 else
 {
-  //echo "Hooray";
+  //storing some information so that we can search with them later
   $email = $inData["email"];
   $username = $inData["username"];
-  //echo $username;
   $password = $inData["password"];
+    
+  //sql command and query
   $sql = "SELECT userid, username, email FROM login WHERE username = '$username' and password = '$password' ";
   $result = $conn->query($sql);
+  
+  //if there is a record found we will return json package with the searched values
   if ($result->num_rows > 0)
   {
+    //organizing all search values as an array
     $row = $result->fetch_assoc();
-    $uname = $row["username"];
-    $pword = $row["password"];
-    $userid = $row["userid"];
-    //$arr = array('userid' => "$userid", 'password' =>  "$pword", 'username' => "$uname");
-    //echo json_encode($row);
-
+      
+    //testing values 
+    //$uname = $row["username"];
+    //$pword = $row["password"];
+    //$userid = $row["userid"];
+      
+    //sending the array as a json package
     sendResultInfoAsJson(json_encode($row));
   }
   
+  //else we will return with an error message 
   else
   {
     $object->err = "No account with the uname = " . $username .  " and password =  " . $password;    
