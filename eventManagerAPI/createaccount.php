@@ -37,7 +37,7 @@ else
   //else we will return with an error message
   else
   {
-    $object->err = "create account failure"
+    $object->err = "create account failure";
     returnWithError($object->err);
   }
 }
