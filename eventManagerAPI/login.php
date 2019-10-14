@@ -26,9 +26,9 @@ else
     $uname = $row["username"];
     $pword = $row["password"];
     $userid = $row["userid"];
-    $arr = array('userid' => "$userid", 'password' =>  "$pword", 'username' => "$uname");
+    //$arr = array('userid' => "$userid", 'password' =>  "$pword", 'username' => "$uname");
 
-    returnWithInfo(json_encode($arr));
+    returnWithInfo(json_encode($row));
   }
   
   else
