@@ -24,7 +24,7 @@ else
   $result2 = $conn->query($sql2);
 
   //if there is a record found we will return json package with the searched values
-  if ($result->num_rows > 0)
+  if ($result2->num_rows > 0)
   {
     //organizing all search values as an array
     $row = $result->fetch_assoc();
