@@ -17,7 +17,7 @@ else
   $lastname = $inData["lastname"];
 
   //sql command and query
-  $sql  = "INSERT INTO `login` (email, username, password) VALUES ('$email', '$username', '$password')";
+  $sql  = "INSERT INTO `login` (email, username, password, firstname, lastname) VALUES ('$email', '$username', '$password', '$firstname', '$lastname')";
   $sql2 = "SELECT userid FROM login WHERE username = '$username' and password = '$password' ";
 
   $result = $conn->query($sql);
@@ -28,9 +28,9 @@ else
   {
     //organizing all search values as an array
     $row = $result2->fetch_assoc();
-    $userid = $row["userid"];
-    $sql3 = "INSERT INTO `username` (userid, firstname, lastname) VALUES ('$userid', '$firstname', '$lastname')";
-    $result3 = $conn->query($sql3);
+    //$userid = $row["userid"];
+    //$sql3 = "INSERT INTO `username` (userid, firstname, lastname) VALUES ('$userid', '$firstname', '$lastname')";
+    //$result3 = $conn->query($sql3);
     sendResultInfoAsJson(json_encode($row));
   }
 
