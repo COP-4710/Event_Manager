@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<p> Hello </p>
+		<meta charset="UTF-8">
+		<meta name = "viewport" content="width-device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="style.css">
+
+		<Title>Login</title>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="login.js"></script>
+
+	</head>
+	<body style="background: #a0a0a0;">
+		<div class="container-fluid w-25 mt-5" style="border:1px solid #000000; border-radius:10px; background: #ffffff">
+			<ul class="nav nav-tabs nav-justified mr-1 mt-4 ml-1">
+				<li class="nav-item">
+					<a class="nav-link active" data-toggle="tab" href="#loginForm">Log In</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" href="#signupForm">Sign Up</a>
+				</li>
+			</ul>
+		<div class="tab-content mt-3 mb-4">
+		<div id="signupForm" class="tab-pane container fade">
+			<form>
+				<div class="form-group">
+					<label for="signupEmail">Your Email</label>
+					<input type="email" class="form-control" id="signupEmail" placeholder="Email" required>
+				</div>
+				<div class="form-group">
+					<label for="signupPW">Enter a Password</label>
+					<input type="password" class="form-control" id="signupPW" placeholder="Password" required>
+				</div>
+				<div class="form-group">
+					<label for="confirmPW">Confirm Password</label>
+					<input type="password" class="form-control" id="confirmPW" placeholder="Confirm Password" required>
+				</div>
+				<button id="registerSubmit" type="submit" class="btn btn-dark w-25">Sign Up</button>
+				<span id="signupError" class="text-danger ml-4">Enter your email and password</span>
+			</form>
+		</div>
+	</div>
+	</body>
+</html>
