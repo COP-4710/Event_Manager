@@ -41,7 +41,7 @@ function CreateAcct()
 		return;
 	}
 	var jsonlogin = JSON.stringify({email:email, password:md5(password)});
-	var fullUrl = url + './createaccount.' + ext;
+	var fullUrl = url + 'eventManagerAPI/createaccount.' + ext;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", fullUrl, true);
