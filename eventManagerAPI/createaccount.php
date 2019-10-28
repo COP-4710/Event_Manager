@@ -19,7 +19,7 @@ else
 
   //sql command and query
   $sql  = "INSERT INTO `login` (email, username, password, firstname, lastname, university_id) VALUES ('$email', '$username', '$password', '$firstname', '$lastname', '$university_id')";
-  $sql2 = "SELECT userid FROM login WHERE username = '$username' and password = '$password' ";
+  $sql2 = "SELECT userid, password FROM login WHERE username = '$username' and password = '$password' ";
 
   $result = $conn->query($sql);
   $result2 = $conn->query($sql2);
