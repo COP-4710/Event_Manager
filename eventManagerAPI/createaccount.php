@@ -15,7 +15,7 @@ else
   $password = $inData["password"];
   $firstname = $inData["firstname"];
   $lastname = $inData["lastname"];
-  $universityid = $inData["university_id"]
+  $universityid = $inData["university_id"];
 
   //sql command and query
   $sql  = "INSERT INTO `login` (email, username, password, firstname, lastname, university_id) VALUES ('$email', '$username', '$password', '$firstname', '$lastname', '$university_id')";
