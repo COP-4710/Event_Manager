@@ -14,7 +14,7 @@ $(function() {
 		console.log("submit clicked");
 		$('#loginSubmit').removeClass('active');
 		$(this).addClass('active');
-		doCreateAccount();
+		CreateAcct();
 		e.preventDefault();
 	});
 
