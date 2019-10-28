@@ -11,15 +11,15 @@ else
 {
   //storing some information so that we can search with them later
   $email = $inData["email"];
-  $username = $inData["username"];
+  //$username = $inData["username"];
   $password = $inData["password"];
-  $firstname = $inData["firstname"];
-  $lastname = $inData["lastname"];
-  $universityid = $inData["university_id"];
+  //$firstname = $inData["firstname"];
+  //$lastname = $inData["lastname"];
+  //$universityid = $inData["university_id"];
 
   //sql command and query
-  $sql  = "INSERT INTO `login` (email, username, password, firstname, lastname, university_id) VALUES ('$email', '$username', '$password', '$firstname', '$lastname', '$university_id')";
-  $sql2 = "SELECT userid, password FROM login WHERE username = '$username' and password = '$password' ";
+  $sql  = "INSERT INTO `login` (email, password) VALUES ('$email', '$password')";
+  $sql2 = "SELECT userid, password FROM login WHERE email = '$email' and password = '$password' ";
 
   $result = $conn->query($sql);
   $result2 = $conn->query($sql2);
