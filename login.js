@@ -1,4 +1,4 @@
-var url = 'https://ip'
+var url = 'http://157.245.128.154'
 var ext = "php"
 
 $(function() {
