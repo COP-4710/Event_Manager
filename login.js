@@ -6,7 +6,7 @@ $(function() {
     $('#loginSubmit').click(function(e){
 		$('#registerSubmit').removeClass('active');
 		$(this).addClass('active');
-		doLogin();
+		//CreateAcct();
 		e.preventDefault();
 	});
 	$('#registerSubmit').click(function(e)
@@ -14,7 +14,7 @@ $(function() {
 		console.log("submit clicked");
 		$('#loginSubmit').removeClass('active');
 		$(this).addClass('active');
-		CreateAcct();
+		CreateAcct()
 		e.preventDefault();
 	});
 
@@ -40,7 +40,7 @@ function CreateAcct()
 		document.getElementById("signupError").innerHTML = "Passwords not matching. Try again.";
 		return;
 	}
-	var jsonlogin = JSON.stringify({email:email, password:md5(password)});
+	var jsonlogin = JSON.stringify({email:email, password:password});
 	var fullUrl = url + 'eventManagerAPI/createaccount.' + ext;
 
 	var xhr = new XMLHttpRequest();
@@ -65,11 +65,11 @@ function CreateAcct()
 				}
 
 				document.getElementById("loginError").innerHTML = "Success";
-				//createCookie("id", userID.toString());
+			//	createCookie("id", userID.toString());
 			}
 		}
 	}
-	/*function createCookie(name, value)
+	/* function createCookie(name, value)
 	{
 		document.cookie = name + "=" + value + ";path=/";
 	}
@@ -89,6 +89,6 @@ function CreateAcct()
 		}
 		return "";
 	}
-*/
 
+ */
 }
