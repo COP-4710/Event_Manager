@@ -1,12 +1,12 @@
-var url = 'http://157.245.128.154'
-var ext = "php"
+var urlBase = 'http://157.245.128.154';
+var extension = "php";
 
 $(function() {
 
     $('#loginSubmit').click(function(e){
 		$('#registerSubmit').removeClass('active');
 		$(this).addClass('active');
-		//CreateAcct();
+		doLogin();
 		e.preventDefault();
 	});
 	$('#registerSubmit').click(function(e)
@@ -14,80 +14,206 @@ $(function() {
 		console.log("submit clicked");
 		$('#loginSubmit').removeClass('active');
 		$(this).addClass('active');
-		CreateAcct()
+		doCreateAccount();
 		e.preventDefault();
 	});
 
 });
 
 function timedRefresh(timeoutPeriod) {
-	setTimeout("location.reload(true);", timeoutPeriod);
+	setTimeout("location.reload(true);",timeoutPeriod);
 }
 
-function CreateAcct()
+function doCreateAccount()
 {
-	var email = document.getElementById("email").value;
-	var pass = document.getElementById("signupPW").value;
-	var confirm_pass = document.getElementById("confirmPW").value;
+	userId = 0;
+	document.getElementById("signupError").innerHTML = "";
+
+
+	var email = document.getElementById("signupEmail").value;
+	var password = document.getElementById("signupPW").value;
+	var confirmPass = document.getElementById("confirmPW").value;
 
 	if (email == "")
 	{
-		document.getElementById("signupError").innerHTML = "Enter your Knight's email address";
+		document.getElementById("signupError").innerHTML = "Enter an email address";
 		return;
 	}
-	if (pass != confirm_pass)
+
+	if (password != confirmPass)
 	{
-		document.getElementById("signupError").innerHTML = "Passwords not matching. Try again.";
+		document.getElementById("signupError").innerHTML = "Passwords do not match";
+		console.log("Passwords do not match");
 		return;
 	}
-	var jsonlogin = JSON.stringify({email:email, password:password});
-	var fullUrl = url + 'eventManagerAPI/createaccount.' + ext;
+
+	var jsonPayload = JSON.stringify({email:email, password:password});
+	var url = urlBase + '/eventManagerAPI/createaccount.' + extension;
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", fullUrl, true);
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.send(jsonPayload);
+
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				var jsonObject = JSON.parse( xhr.responseText );
+
+				if(jsonObject.hasOwnProperty('error') && jsonObject.error.length > 0)
+				{
+					// document.getElementById("contactSearchResult").innerHTML = "No contacts were found.";
+					console.log("Unexpected error");
+					console.log(jsonObject.error);
+
+					document.getElementById("signupError").innerHTML = jsonObject.error;
+
+					return;
+				}
+
+				document.getElementById("signupError").innerHTML = "Created successfuly! Logging in...";
+				// timedRefresh(2000);
+
+				// Force a login
+				doLogin(email, password);
+
+			}
+		}
+	}
+	catch(err)
+	{
+		document.getElementById("loginResult").innerHTML = err.message;
+	}
+}
+
+
+function doLogin(creationEmail, creationPass) {
+	document.getElementById("loginError").innerHTML = "";
+
+  var email = creationEmail;
+  var pass = creationPass;
+
+  if (email == null || pass == null)
+  {
+    email = document.getElementById("loginEmail").value;
+    pass = document.getElementById("loginPW").value;
+  }
+
+  console.log("Email: " + email + ", Password: " + pass);
+
+	// Glue together some json
+	var jsonPayload = JSON.stringify({email:email, password:pass});
+	var url = urlBase + '/eventManagerAPI/login.' + extension;
+
+	// Prepare to send
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-	try {
+// 	var url = urlBase + '/contacts.html';
+	try
+	{
+		// Send the payload
 		xhr.send(jsonPayload);
+
 		console.log(jsonPayload);
 
 		xhr.onreadystatechange = function()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
+				// Parse the response from the server
 				var jsonObject = JSON.parse(xhr.responseText);
-				var userID = jsonObject.id;
-				if (userID < 1)
+
+				// Get UID from json. If json does not have an updated UID, print error.
+				var userId = jsonObject.id;
+				if (userId < 1)
 				{
 					document.getElementById("loginError").innerHTML = "Email/Password combination invalid";
-					console.log("user doesn't exist");
+					console.log("User doesn't exist");
 					return;
 				}
 
+				// Otherwise, we successfuly got a user from the database.
 				document.getElementById("loginError").innerHTML = "Success";
-				createCookie("id", userID.toString());
+
+				// Save id into a sitewide cookie
+				createCookie("id", userId.toString());
+
+				// Save the email for "signed in as:" display
+				createCookie("email", email);
+
+				// var tempstring = getCookie("user_id");
+
+				// Reset the username and password just for cleanliness
+				document.getElementById("loginEmail").value = "";
+				document.getElementById("loginPW").value = "";
+
+				// Go to contacts.html
+				console.log("Redirecting...");
+				window.location.replace(urlBase + "/login.html");
+
 			}
 		}
 	}
- function createCookie(name, value)
+	catch(err)
 	{
-		document.cookie = name + "=" + value + ";path=/";
-	}
-	function getCookie(cname)
-	{
-		var name = cname + "=";
-		var decodedCookie = decodeURIComponent(document.cookie);
-		var ca = decodedCookie.split(';');
-		for(var i = 0; i <ca.length; i++) {
-			var c = ca[i];
-			while (c.charAt(0) == ' ') {
-				c = c.substring(1);
-			}
-
-			return c.substring(name.length, c.length);
-
-		}
-		return "";
+		document.getElementById("loginResult").innerHTML = err.message;
 	}
 
+}
+
+function doLogout()
+{
+	userId = 0;
+	firstName = "";
+	lastName = "";
+
+	hideOrShow( "loggedInDiv", false);
+	hideOrShow( "accessUIDiv", false);
+	hideOrShow("createDiv", false);
+	hideOrShow( "loginDiv", false);
+	hideOrShow("welcomeDiv", true);
+}
+
+// Creates a cookie to store a user's session info
+function createCookie(name, value)
+{
+	document.cookie = name + "=" + value + ";path=/";
+}
+
+function getCookie(cname)
+{
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+
+    return c.substring(name.length, c.length);
+
+  }
+  return "";
+}
+
+
+
+function hideOrShow( elementId, showState )
+{
+	var vis = "visible";
+	var dis = "block";
+	if( !showState )
+	{
+		vis = "hidden";
+		dis = "none";
+	}
+
+	document.getElementById( elementId ).style.visibility = vis;
+	document.getElementById( elementId ).style.display = dis;
 }
