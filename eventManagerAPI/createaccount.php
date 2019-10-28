@@ -46,7 +46,7 @@ function returnWithError( $err )
 {
     sendResultInfoAsJson(json_encode($err));
 }
-function getRequestInfo()
+function getRequestInfo() 
 {
     return json_decode(file_get_contents('php://input'), true);
 }
