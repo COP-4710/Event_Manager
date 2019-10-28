@@ -65,11 +65,11 @@ function CreateAcct()
 				}
 
 				document.getElementById("loginError").innerHTML = "Success";
-				createCookie("id", userID.toString());
+				//createCookie("id", userID.toString());
 			}
 		}
 	}
-	function createCookie(name, value)
+	/*function createCookie(name, value)
 	{
 		document.cookie = name + "=" + value + ";path=/";
 	}
@@ -89,6 +89,6 @@ function CreateAcct()
 		}
 		return "";
 	}
-
+*/
 
 }
