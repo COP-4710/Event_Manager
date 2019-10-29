@@ -33,9 +33,9 @@ else
     //$sql3 = "INSERT INTO `username` (userid, firstname, lastname) VALUES ('$userid', '$firstname', '$lastname')";
     //$result3 = $conn->query($sql3);
     
-    $sql3 = "INSERT INTO `personalInfo` (username, firstname, lastname, university, userid) VALUES ('$username', '$firstname', '$lastname', '$university','$userid')";
+    $sql3 = "INSERT INTO `personalInfo` (username, firstname, lastname, university, userid, password) VALUES ('$username', '$firstname', '$lastname', '$university','$userid', '$password')";
     $result3 = $conn->query($sql3);
-    $sql4 = "SELECT userid, username, firstname, lastname, university, userlevel FROM personalInfo WHERE userid = '$userid' ";
+    $sql4 = "SELECT userid, username, firstname, lastname, university, userlevel, password FROM personalInfo WHERE userid = '$userid' ";
     $result4 = $conn->query($sql4);
     $row2 = $result4->fetch_assoc();
     sendResultInfoAsJson(json_encode($row2));
