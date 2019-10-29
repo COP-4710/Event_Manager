@@ -35,6 +35,8 @@ else
     
     $sql3 = "INSERT INTO `personalInfo` (username, firstname, lastname, university, userid) VALUES ('$username', '$firstname', '$lastname', '$university','$userid')";
     $result3 = $conn->query($sql3);
+    $sql4 = "SELECT userid, username, firstname, lastname, university, userlevel FROM personalInfo WHERE userid = '$userid' ";
+      
     sendResultInfoAsJson(json_encode($row));
   }
 
