@@ -131,7 +131,7 @@ function doLogin(creationEmail, creationPass) {
 			{
 				// Parse the response from the server
 				var jsonObject = JSON.parse(xhr.responseText);
-
+				console.log(jsonObject);
 				// Get UID from json. If json does not have an updated UID, print error.
 				var userId = jsonObject.id;
 				if (userId < 1)
