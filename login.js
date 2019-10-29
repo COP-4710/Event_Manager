@@ -82,7 +82,7 @@ function doCreateAccount()
 				// timedRefresh(2000);
 
 				// Force a login
-				doLogin(email, password);
+				//doLogin(email, password);
 
 			}
 		}
@@ -157,8 +157,8 @@ function doLogin(creationEmail, creationPass) {
 				document.getElementById("loginPW").value = "";
 
 				// Go to contacts.html
-				console.log("Redirecting...");
-				window.location.replace(urlBase + "/login.html");
+				//console.log("Redirecting...");
+				//window.location.replace(urlBase + "/login.html");
 
 			}
 		}
