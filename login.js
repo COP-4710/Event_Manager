@@ -34,8 +34,8 @@ function doCreateAccount()
 	var password = document.getElementById("signupPW").value;
 	var confirmPass = document.getElementById("confirmPW").value;
 	var username = document.getElementById("username").value;
-	var firstName = document.getElementById("firstName").value;
-	var lastName = document.getElementById("lastName").value;
+	var firstname = document.getElementById("firstName").value;
+	var lastname = document.getElementById("lastName").value;
 	var university = document.getElementById("university").value;
 
 	if (email == "")
@@ -51,7 +51,7 @@ function doCreateAccount()
 		return;
 	}
 
-	var jsonPayload = JSON.stringify({email:email, password:password, username:username, firstName: firstName, lastName: lastName, university: university});
+	var jsonPayload = JSON.stringify({email:email, password:password, username:username, firstname: firstname, lastname: lastname, university: university});
 	var url = urlBase + '/eventManagerAPI/createaccount.' + extension;
 
 	var xhr = new XMLHttpRequest();
