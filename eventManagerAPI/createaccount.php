@@ -11,11 +11,11 @@ else
 {
   //storing some information so that we can search with them later
   $email = $inData["email"];
-  //$username = $inData["username"];
+  $username = $inData["username"];
   $password = $inData["password"];
-  //$firstname = $inData["firstname"];
-  //$lastname = $inData["lastname"];
-  //$universityid = $inData["university_id"];
+  $firstname = $inData["firstname"];
+  $lastname = $inData["lastname"];
+  $university = $inData["university"];
 
   //sql command and query
   $sql  = "INSERT INTO `login` (email, password) VALUES ('$email', '$password')";
@@ -29,9 +29,12 @@ else
   {
     //organizing all search values as an array
     $row = $result2->fetch_assoc();
-    //$userid = $row["userid"];
+    $userid = $row["userid"];
     //$sql3 = "INSERT INTO `username` (userid, firstname, lastname) VALUES ('$userid', '$firstname', '$lastname')";
     //$result3 = $conn->query($sql3);
+    
+    $sql3 = "INSERT INTO `personalInfo` (username, firstname, lastname, university, userid) VALUES ('$username', '$firstname', '$lastname', '$university','$userid')";
+    $result3 = $conn->query($sql3);
     sendResultInfoAsJson(json_encode($row));
   }
 
