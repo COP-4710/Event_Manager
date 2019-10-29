@@ -19,7 +19,7 @@ else
   $password = $inData["password"];
     
   //sql command and query
-  $sql = "SELECT userid, username, email FROM login WHERE username = '$username' and password = '$password' ";
+  $sql = "SELECT userid, email, password FROM login WHERE email = '$email' and password = '$password' ";
   $result = $conn->query($sql);
   
   //if there is a record found we will return json package with the searched values
@@ -40,7 +40,7 @@ else
   //else we will return with an error message 
   else
   {
-    $object->err = "No account with the uname = " . $username .  " and password =  " . $password;    
+    $object->err = "No account with the email = " . $email .  " and password =  " . $password;    
     returnWithError($object->err);
   }
 
