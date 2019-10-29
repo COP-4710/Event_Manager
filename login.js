@@ -81,8 +81,8 @@ function doCreateAccount()
 				document.getElementById("signupError").innerHTML = "Created successfuly! Logging in...";
 				// timedRefresh(2000);
 
-				// Force a login
-				//doLogin(email, password);
+				//Force a login
+				doLogin(email, password);
 
 			}
 		}
