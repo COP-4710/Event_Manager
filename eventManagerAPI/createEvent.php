@@ -15,10 +15,12 @@ else
   $description = $inData["description"];
   $start = $inData["start"];
   $end = $inData["end"];
+  //$eventtype = $inData["event_type"];
+  //$imageid = $inData["image_id"];
 
   //sql command and query
-  $sql  = "INSERT INTO `event` (event_name, date, description, start, end ) VALUES ('$eventname', '$date', '$description', '$start', '$end')";
-  $sql2 = "SELECT event_name, date, event_id, start, end FROM login WHERE event_name = '$eventname' ";
+  $sql  = "INSERT INTO `event` (event_name, date, description, start, end ) VALUES ('$eventname', '$date', '$description', '$start', '$end' )";
+  $sql2 = "SELECT event_name, date, event_id, start, end, description FROM event WHERE event_name = '$eventname' ";
   $result = $conn->query($sql);
   $result2 = $conn->query($sql2);
   //if there is a record found we will return json package with the searched values
