@@ -23,7 +23,7 @@ else
 	}
 	else
 	{
-		$object->err = "There were no events on the"
+		$object->err = "There were no events on the";
 		returnWithError($object->err);
 	}
 }
