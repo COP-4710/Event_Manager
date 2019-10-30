@@ -24,7 +24,7 @@ else
 	else
 	{
 		$object->err = "There were no events on the"
-		returnWithError($object);
+		returnWithError($object->err);
 	}
 }
 function returnWithError( $err )
