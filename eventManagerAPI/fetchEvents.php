@@ -8,7 +8,7 @@ if ($conn->connect_error)
 else
 {
 	$date = $inData["date"];
-	$sql = "SELECT * FROM event where date= '$date' ORDER BY start ASC";
+	$sql = "SELECT * FROM event where date= '$date' ORDER BY date asc, start ASC";
 		//$result = $conn->query($sql);
 	$result = mysqli_query($conn, $sql);
     	$json_array = array();
