@@ -8,7 +8,7 @@ if ($conn->connect_error)
 else
 {
 	$date = $inData["date"];
-	$sql = "SELECT * FROM event where date='" . $date  . "'";
+	$sql = "SELECT * FROM event where date= '$date' ";
 		//$result = $conn->query($sql);
 	$result = mysqli_query($conn, $sql);
     	$json_array = array();
