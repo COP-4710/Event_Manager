@@ -1,0 +1,143 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	font-family:
+}
+section
+{
+			width: 100%;
+			height: 100vh;
+			background: url(bg.jpg);
+			background-size: cover;
+}
+section .userBox
+{
+	width: 50%;
+	height: 100%;
+	float: right;
+	padding: 50px;
+	box-sizing: border-box;
+}
+
+section .userBox .content
+{
+	 color: #fff;
+	 background: rgba(0,0,0,.7);
+	 padding: 40px;
+	 transition: .5s;
+}
+
+section .userBox .content p
+{
+	margin: 10px
+	padding:0;
+}
+section .userBox .content a
+{
+	display: inline-block;
+	col
+	text-decoration: none;
+	text-transform: none;
+	padding: 10px 15px;
+	border-color: : 2px solid rgb(254, 195, 10);
+	font-size:  18px;
+	margin-top: 15px;
+	transition: .2s;
+	float:left;
+}
+section .events
+{
+	position: relative;
+	height: 100%;
+	width: 50%;
+	background: rgba(0, 0, 0, 0.5);
+	float:left;
+	box-sizing: border-box;
+	overflow-y: auto;
+}
+section .events ul
+{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-10.5%);
+	margin: 0px;
+	padding: 40px;
+	box-sizing: border-box;
+}
+section .events ul  li
+{
+	list-style: none;
+	background: #fff;
+	box-sizing: border-box;
+	height: 200px;
+	margin: 15px 0;
+
+}
+section .events ul li .time
+{
+	position: relative;
+	padding: 20px;
+	background: #262626;
+	box-sizing: border-box;
+	width: 30%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	transition: .5s;
+}
+section .events ul li:hover .time
+/*254 195 10*/
+{
+	background: rgb(254, 195, 10);
+}
+section .events ul li .time h2
+{
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	font-size: 60px;
+}
+section .events ul li .time h2 span
+{
+	font-size: 30px;
+}
+section .events ul li .details
+{
+	padding: 20px;
+	background: #fff;
+	box-sizing: border-box;
+	width: 70%;
+	height: 100%;
+	float: left;
+}
+section .events ul li .details h3
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	font-size: 24px;
+}
+section .events ul li .details p
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+}
+section .events ul li .details a
+{
+	display: inline-block;
+	text-decoration: none;
+	text-transform: none;
+	padding: 10px 15px;
+	border: 2px solid rgb(254, 195, 10);
+	font-size:  18px;
+	margin-top: 15px;
+	transition: .2s;
+	float:right;
+}
