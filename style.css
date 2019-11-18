@@ -6,10 +6,10 @@ body
 }
 section
 {
-			width: 100%;
-			height: 100vh;
-			background: url(bg.jpg);
-			background-size: cover;
+	width: 100%;
+	height: 100vh;
+	background: url(bg.jpg);
+	background-size: cover;
 }
 section .userBox
 {
@@ -24,13 +24,13 @@ section .userBox .content
 {
 	 color: #fff;
 	 background: rgba(0,0,0,.7);
-	 padding: 40px;
+	 padding: 100px;
 	 transition: .5s;
 }
 
 section .userBox .content p
 {
-	margin: 10px
+	margin: 5px
 	padding:0;
 }
 section .userBox .content a
@@ -44,7 +44,8 @@ section .userBox .content a
 	font-size:  18px;
 	margin-top: 15px;
 	transition: .2s;
-	float:left;
+	float: left;
+	padding: 0;
 }
 section .events
 {
@@ -71,6 +72,7 @@ section .events ul  li
 	background: #fff;
 	box-sizing: border-box;
 	height: 200px;
+	width: 600px;
 	margin: 15px 0;
 
 }
@@ -128,6 +130,11 @@ section .events ul li .details p
 	margin: 0;
 	padding: 0;
 	font-size: 16px;
+}
+
+section .events ul li .details form
+{
+	float: right;
 }
 section .events ul li .details a
 {

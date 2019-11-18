@@ -37,7 +37,7 @@ function doCreateAccount()
 	var firstname = document.getElementById("firstName").value;
 	var lastname = document.getElementById("lastName").value;
 	var university = document.getElementById("university").value;
-
+// Hello
 	if (email == "")
 	{
 		document.getElementById("signupError").innerHTML = "Enter an email address";
