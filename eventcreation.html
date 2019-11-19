@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang = "en-US">
+ <head>
+  <title>Create Public Event</title>
+ </head>
+ <body>
+ <section>
+  <div class='window'>
+  <form action='createEvent.php' method='post'>
+  <p>Event Name:</p>
+   <textarea name='event_name'>Type Name here</textarea>
+   <p>Event time</p>
+    <input type="date" name='date' />
+    </br>
+    <input type="time" name='start' /> <p> - </p> <input type="time" name='end' />
+    </br>
+    <textarea name='description'>Event Description</textarea>
+    </br>
+    <textarea name='location_name'>Event Location</textarea>
+    </br>
+    <button name='submit' type='submit'>Create Event</button>
+    </form>
+    </br>
+  </div>
+  </section>
+ </body>
+</html>

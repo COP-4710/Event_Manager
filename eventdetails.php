@@ -17,6 +17,7 @@ Event Details
         width: 400px;  /* The width is the width of the web page */
        }
     </style>
+	 <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">
 </head>
 <body>
     <h2>
