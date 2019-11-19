@@ -43,7 +43,7 @@ echo "<!DOCTYPE html>
 					</div>
 					<div class=\"events\">
 						<ul>
-							<li>
+						<!--	<li>
 									<div class=\"time\">
 										<h2>24<br><span>June</span><h2>
 									</div>
@@ -54,7 +54,7 @@ echo "<!DOCTYPE html>
 										<sript></script>
 										<a href=\"#\">View Details</a>
 									</div>
-							</li>";
+							</li> -->";
 
 	$sql ="SELECT *FROM RSOs WHERE university = '{$_SESSION["university"]} ' ORDER BY name ASC";
 	$result = mysqli_query($conn, $sql);
@@ -74,9 +74,20 @@ echo "<!DOCTYPE html>
                                                                         <p>{$_SESSION["RSO"]["description"]} this is the RSO id: {$_SESSION["RSO"]["userid_admin"]}
                                                                         </p>
 									<sript></script>
-									<form action=\"fetchRSOdetails.php\" method=\"post\"><button name=\"RSO\" type=\"submit\" value=\"{$_SESSION["RSO"]["RSO"]}\">Details</button></form>
-                                                                      <!--  <a href=\"#\">View Details</a> -->
-                                                                </div>
+									<form action=\"fetchRSOdetails.php\" method=\"post\">
+										<button name=\"RSO\" type=\"submit\" value=\"{$_SESSION["RSO"]["RSO"]}\">Details</button>
+									</form>";
+					$sql5 = "SELECT * FROM RSOmembers WHERE userid = '{$_SESSION["userid"]}' and RSO = '{$_SESSION["RSO"]["RSO"]}'";
+	$result5 = $conn->query($sql5);
+	if (!$result5) {
+    echo "<p>hello there! </p>";
+}
+
+
+								if ($result5->num_rows == 0) {      
+									echo"<form action='joinRSO.php' method='post'>
+									<button name='RSO' type='submit' value='{$_SESSION["RSO"]["RSO"]}'>Join</button></form>";}
+                    echo                                          "  </div>
                                                 </li>";
 
 }

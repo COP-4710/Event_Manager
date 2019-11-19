@@ -12,8 +12,9 @@ if ($_POST['option-button'] != NULL)
 //$_SESSION["date"] = date("YY-MM-DD");
 //echo $_SESSION["date"];
 $_SESSION["username"] = "Ben";
+if ($_SESSION["date"] == NULL){
 $_SESSION["date"] =date("Y-m-d");
-
+}
 $conn = new mysqli("localhost", "debian-sys-maint", "d197cf7871616e0bcada971f428d1f69d5164d01474837e7", "event_manager");
 if ($conn->connect_error)
 {
@@ -43,8 +44,9 @@ echo "<!DOCTYPE html>
 			</div>
 			<div class=\"userBox\">
 				<div class=\"content\">
-					<h1>This is a test.</h1>
-					<p> </p>";
+					<h1>Welcome "; echo $_SESSION['username']; echo "!</h1>
+					<p>To the left are upcoming events that are happening, you may click on the options
+					above the event feed to filter events between student organizations, public events, and private events that are a part of your university.</p>";
 				if ($_SESSION['option-button'] == 1 && $_SESSION['userlevel'] == 3){
 					echo "<form action=\"createEvent.php\" method = \"post\">";
 					echo "<button type=\"submit\">Create Public Event</button>";
@@ -65,12 +67,15 @@ echo "<!DOCTYPE html>
 				}
 				        echo"<form action=\"logout.php\" method = \"post\">
 						 <button type=\"submit\">Logout</button>
-                                         </form>
+					 </form>
+					<form action='eventdatefeed.php' method='post'>
+						<input type='date' name='date' />
+					</form>
 					</div>
 					</div>
 					<div class=\"events\">
 						<ul>
-							<li>
+						<!--	<li>
 									<div class=\"time\">
 										<h2>24<br><span>June</span><h2>
 									</div>
@@ -81,10 +86,11 @@ echo "<!DOCTYPE html>
 										<sript></script>
 										<a href=\"#\">View Details</a>
 									</div>
-							</li>";
+							</li> -->";
 	if ($_SESSION['option-button'] == 1)
 {
-	$sql ="SELECT *FROM event where date = '{$_SESSION["date"]}' ORDER BY date ASC, start ASC";
+	//$sql ="SELECT *FROM event where date = '{$_SESSION["date"]}' ORDER BY date ASC, start ASC";
+	$sql ="SELECT *FROM event ORDER BY date ASC, start ASC";
 	$result = mysqli_query($conn, $sql);
 
 
@@ -113,9 +119,9 @@ else if ($_SESSION['option-button'] == 2)
 {	
 	$sql2 = "SELECT RSO FROM RSOmembers where userid = '{$_SESSION ["userid"]}' ";
 	$result2 = $conn->query($sql2);
-	$_SESSION[RSOid]= $result2;
+	$_SESSION["RSOid"]= $result2;
 
-	while($_SESSION[RSOid]= $result2->fetch_assoc())
+	while($_SESSION["RSOid"]= $result2->fetch_assoc())
 	{
 
 		$sql = "SELECT *FROM RSO_events WHERE RSO = '{$_SESSION["RSOid"]["RSO"]}' ORDER BY date ASC, start ASC";//need the sql call for private events and change the variables accordingly if even needed
@@ -136,7 +142,7 @@ else if ($_SESSION['option-button'] == 2)
 																																				<p>{$_SESSION["events"]["description"]} this is the event id: {$_SESSION["events"]["RSOe"]}
 																																				</p>
 									<sript></script>
-									<form action=\"fetcheventdetails.php\" method=\"post\"><button name=\"event_id\" type=\"submit\" value=\"{$_SESSION["events"]["RSOe"]}\">Details</button></form>
+									<form action=\"fetchRSOeventdetails.php\" method=\"post\"><button name=\"RSOe\" type=\"submit\" value=\"{$_SESSION["events"]["RSOe"]}\">Details</button></form>
 																																			<!--  <a href=\"#\">View Details</a> -->
 																																</div>
 																								</li>";
@@ -165,7 +171,7 @@ else if ($_SESSION['option-button'] == 3)
     i/br>
 																																				</p>
 									<sript></script>
-									<form action=\"fetcheventdetails.php\" method=\"post\"><button name=\"event_id\" type=\"submit\" value=\"{$_SESSION["events"]["PRIVATEe"]}\">Details</button></form>
+									<form action=\"fetchPrivateeventdetails.php\" method=\"post\"><button name=\"PRIVATEe\" type=\"submit\" value=\"{$_SESSION["events"]["PRIVATEe"]}\">Details</button></form>
 																																			<!--  <a href=\"#\">View Details</a> -->
 																																</div>
 																								</li>";

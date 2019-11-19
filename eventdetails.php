@@ -39,13 +39,42 @@ Event Details
 // Need to modify variables here
 $sql ="SELECT *FROM comment where eventid = '{$_SESSION["eventid"]}' ORDER BY timestamp ASC";
 $result =$db->query($sql);
-while($_SESSION['comments'] = $result->fetch_assoc()){
+if ($_SESSION['option-button'] == 1){
+	$sql ="SELECT *FROM comment where eventid = '{$_SESSION["eventid"]}' ORDER BY timestamp ASC";
+	$result =$db->query($sql);
+	while($_SESSION['comments'] = $result->fetch_assoc()){
+
 	echo "	<li>
 	<input type='hidden' name='commentid' value={$_SESSION['comments']['commentid']}>
 	<h3>{$_SESSION['comments']['username']} </h3>
 	<h4>{$_SESSION['comments']['rating']} </h4>
 	<p>{$_SESSION['comments']['description']}</p>
-	</li>";
+	</li>"; }
+}
+	//RSO
+	if ($_SESSION['option-button'] == 2){
+		$sql ="SELECT *FROM commentRSO where RSOe = '{$_SESSION["eventid"]}' ORDER BY timestamp ASC";
+	$result =$db->query($sql);
+	while($_SESSION['comments'] = $result->fetch_assoc()){
+        echo "  <li>
+        <input type='hidden' name='commentid' value={$_SESSION['comments']['commentid']}>
+        <h3>{$_SESSION['comments']['username']} </h3>
+        <h4>{$_SESSION['comments']['rating']} </h4>
+        <p>{$_SESSION['comments']['description']}</p>
+	</li>"; }
+	}
+//private
+if ($_SESSION['option-button'] == 3)
+{
+	 $sql ="SELECT *FROM commentPrivate where PRIVATEe = '{$_SESSION["eventid"]}' ORDER BY timestamp ASC";
+        $result =$db->query($sql);
+	while($_SESSION['comments'] = $result->fetch_assoc()){
+        echo "  <li>
+        <input type='hidden' name='commentid' value={$_SESSION['comments']['commentid']}>
+        <h3>{$_SESSION['comments']['username']} </h3>
+        <h4>{$_SESSION['comments']['rating']} </h4>
+        <p>{$_SESSION['comments']['description']}</p>
+	</li>"; }
 }
 ?>
 </ul>
