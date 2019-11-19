@@ -7,11 +7,12 @@ if ($_POST['option-button'] != NULL)
 	$_SESSION['option-button'] = $_POST['option-button'];
 }
 // accessing session data
-$_SESSION["date"] ="2019-11-8";
+//$_SESSION["date"] ="2019-11-8";
 
 //$_SESSION["date"] = date("YY-MM-DD");
 //echo $_SESSION["date"];
 $_SESSION["username"] = "Ben";
+$_SESSION["date"] =date("Y-m-d");
 
 $conn = new mysqli("localhost", "debian-sys-maint", "d197cf7871616e0bcada971f428d1f69d5164d01474837e7", "event_manager");
 if ($conn->connect_error)
@@ -108,18 +109,25 @@ echo "<!DOCTYPE html>
 
 }
 }
-else if ($_SESSION['option-button'] == 3)
-{
-	$sql = "SELECT *FROM RSO_events WHERE userid = '{$_SESSION["userid"]}' ORDER BY date ASC, start ASC";//need the sql call for private events and change the variables accordingly if even needed
-	$result = mysqli_query($conn, $sql);
+else if ($_SESSION['option-button'] == 2)
+{	
+	$sql2 = "SELECT RSO FROM RSOmembers where userid = '{$_SESSION ["userid"]}' ";
+	$result2 = $conn->query($sql2);
+	$_SESSION[RSOid]= $result2;
+
+	while($_SESSION[RSOid]= $result2->fetch_assoc())
+	{
+
+		$sql = "SELECT *FROM RSO_events WHERE RSO = '{$_SESSION["RSOid"]["RSO"]}' ORDER BY date ASC, start ASC";//need the sql call for private events and change the variables accordingly if even needed
+		$result = mysqli_query($conn, $sql);
 
 
-	$_SESSION["events"] = $result;
-	while($_SESSION["events"] = $result->fetch_assoc())
-{
-	//echo $_SESSION["events"]["event_name"];
-	$dateString = date('F d, Y', strtotime($_SESSION["events"]["date"]));
-	echo"<li>
+		$_SESSION["events"] = $result;
+		while($_SESSION["events"] = $result->fetch_assoc())
+		{
+			//echo $_SESSION["events"]["event_name"];
+			$dateString = date('F d, Y', strtotime($_SESSION["events"]["date"]));
+			echo"<li>
 																																<div class=\"time\">
 																																				<h2>  $dateString <h2>
 																																</div>
@@ -133,11 +141,12 @@ else if ($_SESSION['option-button'] == 3)
 																																</div>
 																								</li>";
 
+		}
+	}
 }
-}
-else if ($_SESSION['option-button'] == 2)
+else if ($_SESSION['option-button'] == 3)
 {
-	$sql = "SELECT *FROM RSO_events WHERE university = '{$_SESSION["university"]}' ORDER BY date ASC, start ASC" ;//need the sql call for private events and change the variables accordingly if even needed
+	$sql = "SELECT *FROM Private_event WHERE university = '{$_SESSION["university"]}' ORDER BY date ASC, start ASC" ;//need the sql call for private events and change the variables accordingly if even needed
 	$result = mysqli_query($conn, $sql);
 
 
@@ -152,10 +161,11 @@ else if ($_SESSION['option-button'] == 2)
 																																</div>
 																																				<div class = \"details\">
 																																				<h3>{$_SESSION["events"]["event_name"]}</h3>
-																																				<p>{$_SESSION["events"]["description"]} this is the event id: {$_SESSION["events"]["event_id"]}
+																																				<p>{$_SESSION["events"]["description"]} this is the private event id: {$_SESSION["events"]["PRIVATEe"]}
+    i/br>
 																																				</p>
 									<sript></script>
-									<form action=\"fetcheventdetails.php\" method=\"post\"><button name=\"event_id\" type=\"submit\" value=\"{$_SESSION["events"]["event_id"]}\">Details</button></form>
+									<form action=\"fetcheventdetails.php\" method=\"post\"><button name=\"event_id\" type=\"submit\" value=\"{$_SESSION["events"]["PRIVATEe"]}\">Details</button></form>
 																																			<!--  <a href=\"#\">View Details</a> -->
 																																</div>
 																								</li>";
