@@ -16,10 +16,30 @@ Event Details
         height: 400px;  /* The height is 400 pixels */
         width: 400px;  /* The width is the width of the web page */
        }
+  section {
+	width: 100%;
+	height: 100vh;
+	background: url(bg.jpg);
+	background-size: cover;
+	}
+  section .window {
+  color: white;
+  margin: auto;
+  padding: 30px;
+  text-align: center;
+  width: 500px;
+  height: 500px;
+  background-color: rgba(0,0,0,0.7);
+}
+ section .window ul {
+ overflow-y: auto;
+}
     </style>
 	 <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">
 </head>
 <body>
+  <section>
+   <div class = 'window'>
     <h2>
      <?php echo $_SESSION["event_name"]; ?>
     </h2>
@@ -50,6 +70,18 @@ if ($_SESSION['option-button'] == 1){
 	<h4>{$_SESSION['comments']['rating']} </h4>
 	<p>{$_SESSION['comments']['description']}</p>
 	</li>"; }
+	     echo "<form action = 'makecomment.php' method='post'>
+             <!--<input type='hidden' name='uid' value='Anonymous'>-->
+             <textarea name='description'>Type comment here</textarea>
+             <select name='rating'> 
+                <option value='1'>Rating 1</option>
+                <option value='2'>Rating 2</option>
+                <option value='3'>Rating 3</option>
+                <option value='4'>Rating 4</option>
+                <option value='5'>Rating 5</option>
+             </select>
+             <button name='submit' type='submit'>Comment</button>
+     </form>";
 }
 	//RSO
 	if ($_SESSION['option-button'] == 2){
@@ -62,6 +94,18 @@ if ($_SESSION['option-button'] == 1){
         <h4>{$_SESSION['comments']['rating']} </h4>
         <p>{$_SESSION['comments']['description']}</p>
 	</li>"; }
+	     echo "<form action = 'makecommentRSO.php' method='post'>
+             <!--<input type='hidden' name='uid' value='Anonymous'>-->
+             <textarea name='description'>Type comment here</textarea>
+             <select name='rating'> 
+                <option value='1'>Rating 1</option>
+                <option value='2'>Rating 2</option>
+                <option value='3'>Rating 3</option>
+                <option value='4'>Rating 4</option>
+                <option value='5'>Rating 5</option>
+             </select>
+             <button name='submit' type='submit'>Comment</button>
+     </form>";
 	}
 //private
 if ($_SESSION['option-button'] == 3)
@@ -74,23 +118,24 @@ if ($_SESSION['option-button'] == 3)
         <h3>{$_SESSION['comments']['username']} </h3>
         <h4>{$_SESSION['comments']['rating']} </h4>
         <p>{$_SESSION['comments']['description']}</p>
-	</li>"; }
+	</li>";}
+     echo "<form action = 'makecommentPrivate.php' method='post'>
+             <!--<input type='hidden' name='uid' value='Anonymous'>-->
+             <textarea name='description'>Type comment here</textarea>
+             <select name='rating'> 
+                <option value='1'>Rating 1</option>
+                <option value='2'>Rating 2</option>
+                <option value='3'>Rating 3</option>
+                <option value='4'>Rating 4</option>
+                <option value='5'>Rating 5</option>
+             </select>
+             <button name='submit' type='submit'>Comment</button>
+     </form>";
+	
 }
 ?>
 </ul>
-     <form action = 'makecomment.php' method='post'>
-   	     <!--<input type='hidden' name='uid' value='Anonymous'>-->
-   	     <textarea name='description'>Type comment here</textarea>
-	     <select name="rating"> 
-		<option value="1">Rating 1</option>
-		<option value="2">Rating 2</option>
-		<option value="3">Rating 3</option>
-		<option value="4">Rating 4</option>
-		<option value="5">Rating 5</option>
-	     </select>
-	     <button name='submit' type='submit'>Comment</button>
-     </form> 
-    <div id="map"></div>
+    <!--<div id="map"></div>
     <script>
 // Initialize and add the map
 function initMap() {
@@ -102,7 +147,7 @@ function initMap() {
   // The marker, positioned at Uluru
   var marker = new google.maps.Marker({position: uluru, map: map});
 }
-    </script>
+    </script>-->
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
@@ -114,5 +159,7 @@ function initMap() {
 <!--This is for a map-->
 <script>
 </script>
+</div>
+</section>
 </body>
 </html>

@@ -11,7 +11,7 @@ if ($_POST['option-button'] != NULL)
 
 //$_SESSION["date"] = date("YY-MM-DD");
 //echo $_SESSION["date"];
-$_SESSION["username"] = "Ben";
+//$_SESSION["username"] = "Ben";
 if ($_SESSION["date"] == NULL){
 $_SESSION["date"] =date("Y-m-d");
 }
@@ -52,7 +52,7 @@ echo "<!DOCTYPE html>
 					echo "<button type=\"submit\">Create Public Event</button>";
 					echo"</form>";
 						}
-				if ($_SESSION['option-button'] == 3)
+				if ($_SESSION['option-button'] == 3 && $_SESSION['userlevel'] == 3)
 				{
 					echo "<form action=\"createPrivateEvent.php\" method = \"post\">";
                                         echo "<button type=\"submit\">Create Private Event</button>";
@@ -105,7 +105,7 @@ echo "<!DOCTYPE html>
                                                                 </div>
                                                                         <div class = \"details\">
                                                                         <h3>{$_SESSION["events"]["event_name"]}</h3>
-                                                                        <p>{$_SESSION["events"]["description"]} this is the event id: {$_SESSION["events"]["event_id"]}
+                                                                        <p>{$_SESSION["events"]["description"]}
                                                                         </p>
 									<sript></script>
 									<form action=\"fetcheventdetails.php\" method=\"post\"><button name=\"event_id\" type=\"submit\" value=\"{$_SESSION["events"]["event_id"]}\">Details</button></form>
@@ -139,7 +139,7 @@ else if ($_SESSION['option-button'] == 2)
 																																</div>
 																																				<div class = \"details\">
 																																				<h3>{$_SESSION["events"]["event_name"]}</h3>
-																																				<p>{$_SESSION["events"]["description"]} this is the event id: {$_SESSION["events"]["RSOe"]}
+																																				<p>{$_SESSION["events"]["description"]}
 																																				</p>
 									<sript></script>
 									<form action=\"fetchRSOeventdetails.php\" method=\"post\"><button name=\"RSOe\" type=\"submit\" value=\"{$_SESSION["events"]["RSOe"]}\">Details</button></form>
@@ -167,9 +167,7 @@ else if ($_SESSION['option-button'] == 3)
 																																</div>
 																																				<div class = \"details\">
 																																				<h3>{$_SESSION["events"]["event_name"]}</h3>
-																																				<p>{$_SESSION["events"]["description"]} this is the private event id: {$_SESSION["events"]["PRIVATEe"]}
-    i/br>
-																																				</p>
+																																				<p>{$_SESSION["events"]["description"]}</p>
 									<sript></script>
 									<form action=\"fetchPrivateeventdetails.php\" method=\"post\"><button name=\"PRIVATEe\" type=\"submit\" value=\"{$_SESSION["events"]["PRIVATEe"]}\">Details</button></form>
 																																			<!--  <a href=\"#\">View Details</a> -->

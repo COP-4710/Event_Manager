@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] == $_POST)
 	$active = 0;
 	$university = $_SESSION['university'];
 
-	$sql = "INSERT INTO RSOs (university, name, email, description, userid_admin, active) VALUES('$university' , '$name' , '$email' , '$description' , '$userid_admin' , '$active')";
+	$sql = "INSERT INTO RSOs (university, name, email, description, userid_admin, active) VALUES ('$university' , '$name' , '$email' , '$description' , '$userid_admin' , '$active')";
 	$result = $db->query($sql);
-	$sql2 = "SELECT * FROM RSOs WHERE university = '$university' , userid_admin = '$userid' , name = '$name' , email = '$email' , description = '$description' , active = '$active'";
+	$sql2 = "SELECT * FROM RSOs WHERE university = '$university' , userid_admin = '$userid' , name = '$name' , email = '$email' , description = '$description'  and  active = '$active'";
 	$result2 = $db->query($sql2);
 
 	if ($result2->num_rows > 0)

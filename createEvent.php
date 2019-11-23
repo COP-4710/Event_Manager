@@ -11,6 +11,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   $location_name = $_POST["location_name"];
   $longitude  = 1;
   $latitude =1;
+
+  //$sqlcheck =  "SELECT* FROM WHERE '$location_name' == location_name AND 'date' == $date AND start  > '$end' AND end < '$start' ";
+  //$resultsqlcheck = $db->query($sqlcheck);
+  //if($resultsqlcheck->num_rows >0)
+  //{
+//	  $_SESSION["ERROR"] = "time conflict";
+//	  header("http://157.245.128.154/createEvent.php");
+  //}
+  
+   
   $sql = "INSERT INTO `location` (event_name, start, end, date, location_name,longitude, latitude) VALUES ('$event_name','$start','$end','$date','$location_name', '$longitude', '$latitude')";
   $result = $db->query($sql);
   $sql2 = "SELECT event_name, start, end, date, location_name FROM location WHERE event_name ='$event_name'";

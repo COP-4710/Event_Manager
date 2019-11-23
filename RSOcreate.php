@@ -29,7 +29,7 @@ include ("config.php");
  <section>
   <div class='window'>
   <form action='createRSO.php' method='post'>
-  <p>Event Name:</p>
+  <p>RSO name:</p>
    <textarea name='name'>Type the name of the student organization here</textarea>
     <p>The student organization's description</p>
     <textarea name='description'>type description here...</textarea>

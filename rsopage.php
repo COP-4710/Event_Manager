@@ -33,8 +33,8 @@ echo "<!DOCTYPE html>
 					<p>To the left you can see the registered student organizations here on campus, if you would like to create another student organization
 					, Click the Create RSO button featured below, your friends will be able to see the RSO appear in the event feed to the left. In order to make an event,
 					you need at least 5 other people to sign up for your RSO. After that, you should see a event creation button appear on the RSO listing. </p>
-					<form action=\"createEvent.php\" method = \"post\">
-						<button type=\"submit\">Create Public Event</button>
+					<form action=\"RSOcreate.php\" method = \"post\">
+						<button type=\"submit\">Create RSO</button>
 						</form>
 				        <form action=\"logout.php\" method = \"post\">
 						 <button type=\"submit\">Logout</button>
@@ -71,7 +71,7 @@ echo "<!DOCTYPE html>
                                                                 </div>
                                                                         <div class = \"details\">
                                                                         <h3>{$_SESSION["RSO"]["name"]}</h3>
-                                                                        <p>{$_SESSION["RSO"]["description"]} this is the RSO id: {$_SESSION["RSO"]["userid_admin"]}
+                                                                        <p>{$_SESSION["RSO"]["description"]}
                                                                         </p>
 									<sript></script>
 									<form action=\"fetchRSOdetails.php\" method=\"post\">
